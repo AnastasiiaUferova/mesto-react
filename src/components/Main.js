@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "./Card";
-import api from "../utils/api";
+import api from "../utils/api.js";
 
 function Main(props) {
     const [userName, setUserName] = useState("");
