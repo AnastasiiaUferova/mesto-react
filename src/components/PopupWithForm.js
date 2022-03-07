@@ -9,7 +9,7 @@ function PopupWithForm({name, isOpen, onClose, title, submitText = "Сохран
              type="button"
              onClick={onClose}
            ></button>
-           <h2 className="popup__title">{`${title}`}</h2>
+           <h2 className="popup__title">{title}</h2>
            <form
              name={`${name}`}
              className="popup__form-info"
