@@ -1,4 +1,4 @@
-export class Api {
+class Api {
     constructor({ address, token }) {
         this._address = address;
         this._token = token;
@@ -116,4 +116,3 @@ const api = new Api({
 });
 
 export default api
-
