@@ -1,10 +1,9 @@
 import React from 'react' 
-import "../index.css"
 
-function PopupWithForm({name, isOpen, onClose, title, submitText, children }) { 
+function PopupWithForm({name, isOpen, onClose, title, submitText = "Сохранить", children }) { 
     return (
-        <section className={isOpen ? `popup popup_type_${name} popup_opened` : `popup popup_type_${name}`} >
-         <section className="popup__container popup__container_type_form">
+        <div className={isOpen ? `popup popup_type_${name} popup_opened` : `popup popup_type_${name}`} >
+         <div className="popup__container popup__container_type_form">
            <button
              className="popup__close-button popup__close-button_type_edit"
              type="button"
@@ -19,8 +18,8 @@ function PopupWithForm({name, isOpen, onClose, title, submitText, children }) {
              <button className="popup__save-button" type="submit">{submitText}</button>
            </form>
            
-         </section>
-        </section>
+         </div>
+        </div>
         
         )
 }

@@ -3,9 +3,15 @@
     margin-bottom: 41px;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 915px) {
     .header__logo {
-        max-width: 103.74px;
-        margin-left: 27px;
+      margin-left: 27px;
     }
-}
+  }
+  
+  @media (max-width: 425px) {
+    .header__logo {
+      max-width: 104px;
+      max-height: 24px;
+    }
+  }

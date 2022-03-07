@@ -1,5 +1,4 @@
 import React from "react";
-import "../index.css";
 
 function Card({ card, onCardClick }) {
     function handleClick() {
@@ -13,7 +12,7 @@ function Card({ card, onCardClick }) {
             <div className="photo-grid__title-container">
                 <h2 className="photo-grid__title">{card.name}</h2>
                 <div className="photo-grid__like-container">
-                    <a className="photo-grid__like-number">{card.likes.length}</a>
+                    <p className="photo-grid__like-number">{card.likes.length}</p>
                     <button className="photo-grid__like" />
                 </div>
             </div>

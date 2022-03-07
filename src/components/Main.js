@@ -1,32 +1,35 @@
 import React from "react";
-import "../index.css";
 import { useState, useEffect } from "react";
 import Card from "./Card";
-import api from "../utils/Api";
+import api from "../utils/api";
 
 function Main(props) {
     const [userName, setUserName] = useState("");
     const [userDescription, setUserDescription] = useState("");
     const [userAvatar, setUserAvatar] = useState("");
+    const [cards, setCards] = useState([]);
+ 
 
     useEffect(() => {
-        api.getUserInfo()
-            .then((userData) => {
+        Promise.all([api.getUserInfo(), api.getCards()])
+            .then(([userData, cards]) => {
                 setUserName(userData.name);
                 setUserDescription(userData.about);
                 setUserAvatar(userData.avatar);
+                setCards(cards);
             })
             .catch((err) => {
                 console.log(err);
             });
-    },[]);
+    }, []);
+
 
     return (
         <main className="content">
             <section className="profile root__profile">
                 <div className="profile__info-container">
                     <div className="profile__avatar-container">
-                        <img src={`${userAvatar}`} alt="Аватар" className="profile__avatar" />
+                        <img src={userAvatar} alt="Аватар" className="profile__avatar" />
                         <button className="profile__avatar-edit-button" onClick={props.onEditAvatar}></button>
                     </div>
                     <div className="profile__info">
@@ -38,7 +41,7 @@ function Main(props) {
                 <button className="profile__add-button" type="button" onClick={props.onAddPlace}></button>
             </section>
             <ul className="photo-grid root__photo-grid">
-                {props.cards.map((card) => (
+                {cards.map((card) => (
                     <Card key={card._id} card={card} onCardClick={props.onCardClick} />
                 ))}
             </ul>

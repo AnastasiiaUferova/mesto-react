@@ -8,6 +8,7 @@
 
 @media (max-width: 425px) {
     .header {
-        max-width: 100vw;
+        max-width: 100%;
+        
     }
 }
