@@ -26,7 +26,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     useEffect(() => {
         setName("");
         setLink("");
-    }, [isOpen, setName, setLink]);
+    }, [isOpen]);
 
     return (
         <PopupWithForm name="new-card" title="Новое место" submitText="Создать" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
