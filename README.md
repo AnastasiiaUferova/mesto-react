@@ -1,5 +1,7 @@
 # REACT.js 'Mesto' (Place') interactive web page student project for [Yandex.Practicum](https://practicum.com)
 
+## [Check out the project on GitHub Pages](https://anastasiiauferova.github.io/mesto-react/)
+
 ## Description
 
 This project is an nteractive gallery where users can share photos. The main concepts and techs I practiced working on the project: React.js Functional Components, useState, useEffect hooks, Asynchronous JavaScript, Fetch API. The data is loaded from and onto external API provided by Yandex.

@@ -5,8 +5,8 @@ import Footer from "./Footer";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import PopupConfirm from "./PopupConfirm";
 import { useState, useEffect } from "react";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api";
@@ -16,6 +16,7 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+    const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
     const [selectedCard, setSelectedCard] = useState({});
@@ -46,6 +47,7 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsImagePopupOpen(false);
+        setIsConfirmPopupOpen(false);
     }
 
     function handleCardClick(data) {
@@ -90,10 +92,19 @@ function App() {
             .catch((err) => console.log(`Error: ${err}`));
     }
 
+
+    function handleOpenPopupDelete(card) {
+        setIsConfirmPopupOpen(true);
+        setSelectedCard(card);
+    }
+
     function handleCardDelete(card) {
         return api
             .deleteCard(card._id)
-            .then(setCards((state) => state.filter((newCard) => newCard._id !== card._id)))
+            .then(
+                setCards((state) => state.filter((newCard) => newCard._id !== card._id)),
+                closeAllPopups()
+                )
             .catch((err) => console.log(`Error: ${err}`));
     }
 
@@ -113,13 +124,13 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
                 <Header />
-                <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onCardDelete={handleCardDelete} onCardLike={handleCardLike} cards={cards} />
+                <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} openPopupDelete={handleOpenPopupDelete} onCardLike={handleCardLike} cards={cards} />
                 <Footer />
                 <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
                 <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
                 <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
 
-                <PopupWithForm name="confirm" title="Вы уверены?" submitText="Да" onClose={closeAllPopups}></PopupWithForm>
+                <PopupConfirm name="confirm" title="Вы уверены?" card={selectedCard} isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} ></PopupConfirm>
 
                 <ImagePopup name="pic" card={selectedCard} onClose={closeAllPopups} isOpen={isImagePopupOpen} />
             </div>
@@ -128,3 +139,4 @@ function App() {
 }
 
 export default App;
+
