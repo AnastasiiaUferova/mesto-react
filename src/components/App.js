@@ -80,10 +80,10 @@ function App() {
     }
 
     function handleCardLike(card) {
-        // Снова проверяем, есть ли уже лайк на этой карточке
+        // check again if there is already a like on this card
         const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
-        // Отправляем запрос в API и получаем обновлённые данные карточки
+        // Send a request to the API and get the updated card data
         return api
             .changeLikeCardStatus(card._id, isLiked)
             .then((newCard) => {
@@ -130,7 +130,7 @@ function App() {
                 <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
                 <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
 
-                <PopupConfirm name="confirm" title="Вы уверены?" card={selectedCard} isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} ></PopupConfirm>
+                <PopupConfirm name="confirm" title="Are you sure?" card={selectedCard} isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} ></PopupConfirm>
 
                 <ImagePopup name="pic" card={selectedCard} onClose={closeAllPopups} isOpen={isImagePopupOpen} />
             </div>
@@ -139,4 +139,3 @@ function App() {
 }
 
 export default App;
-

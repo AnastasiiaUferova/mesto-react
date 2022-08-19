@@ -24,7 +24,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        // Передаём значения управляемых компонентов во внешний обработчик
+    // Pass the values to the external handler
         onUpdateUser({
             name,
             about: description,
@@ -32,7 +32,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     }
 
     return (
-        <PopupWithForm name="edit" title="Редактировать профиль" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+        <PopupWithForm name="edit" title="Edit profile" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
             <input id="username-input" type="text" name="name" value={name || ""} onChange={handleChangeName} className="popup__input popup__input_type_name" minLength="{2}" maxLength="{40}" required />
             <span className="popup__error username-input-error">Error</span>
             <input id="description-input" type="text" name="about" value={description || ""} onChange={handleChangeDescription} className="popup__input popup__input_type_job" minLength="{2}" maxLength="{200}" required />

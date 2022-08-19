@@ -8,7 +8,7 @@ class Api {
         if (response.ok) {
             return response.json();
         }
-        return Promise.reject(`Ошибка: ${response.status}`);
+        return Promise.reject(`Error: ${response.status}`);
     }
 
     getCards() {
@@ -97,8 +97,8 @@ class Api {
             "Content-Type": "application/json",
         },
         })
-          .then(this._handleResponse)
-      }
+            .then(this._handleResponse)
+    }
 
 
 
