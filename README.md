@@ -1,5 +1,9 @@
 # REACT.js 'Mesto' (Place') interactive web page student project for [Yandex.Practicum](https://practicum.com)
 
+
+https://user-images.githubusercontent.com/78100943/189522867-57ac2070-0e7a-4be0-a3a7-b10e5be12db4.mov
+
+
 ## [Check out the project on GitHub Pages](https://anastasiiauferova.github.io/mesto-react/)
 
 ## Description
